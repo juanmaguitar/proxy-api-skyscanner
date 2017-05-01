@@ -14,18 +14,17 @@ const options = {
 
 app.use(cors())
 
-let counter = 0
 app.get('*', function (req, res) {
-  options.url = URL_BASE + req.originalUrl + '?apiKey=' + process.env.API_KEY
-  console.log(options.url)
-  console.log('num requests')
-  console.log(++counter)
-  request(options, function (error, response, body) {
-    if (error) throw error
-    console.log(response)
-    const parsedJSON = JSON.parse(body)
-    res.json(parsedJSON)
-  })
+  const urlRequested = req.originalUrl
+  if (!urlRequested.includes('favicon.ico')) {
+    options.url = URL_BASE + req.originalUrl + '?apiKey=' + process.env.API_KEY
+    request(options, function (error, response, body) {
+      if (error) throw error
+      res.json(JSON.parse(body))
+    })
+  } else {
+    res.sendStatus(200)
+  }
 })
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}...`))
