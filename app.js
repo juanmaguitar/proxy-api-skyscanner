@@ -18,7 +18,7 @@ app.get('*', function (req, res) {
   options.url = URL_BASE + req.originalUrl + '?apiKey=' + process.env.API_KEY
   request(options, function (error, response, body) {
     if (error) throw error
-    res.json(JSON.parse(body))
+    res.json(body)
   })
 })
 
