@@ -16,6 +16,7 @@ app.use(cors())
 
 app.get('*', function (req, res) {
   const urlRequested = req.originalUrl
+  console.log('urlRequested: ' + urlRequested)
   if (!urlRequested.includes('favicon.ico')) {
     options.url = URL_BASE + req.originalUrl + '?apiKey=' + process.env.API_KEY
     request(options, function (error, response, body) {
