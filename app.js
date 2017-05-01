@@ -20,7 +20,7 @@ app.get('*', function (req, res) {
   if (!urlRequested.includes('favicon.ico')) {
     options.url = URL_BASE + req.originalUrl + '?apiKey=' + process.env.API_KEY
     request(options, function (error, response, body) {
-      if (error) throw error
+      if (error) res.sendStatus(500)
       res.json(JSON.parse(body))
     })
   } else {
