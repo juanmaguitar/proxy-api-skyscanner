@@ -20,16 +20,11 @@ app.get('*', function (req, res) {
   if (!urlRequested.includes('favicon.ico')) {
     options.url = URL_BASE + req.originalUrl + '?apiKey=' + process.env.API_KEY
     request(options, function (error, response, body) {
-      if (error) {
-        console.log('Error!')
-        res.status(500).send('Something went wrong!')
-      } else {
-        console.log('Returning results...')
-        res.json(JSON.parse(body))
-      }
+      if (error) res.status(500).send('Something went wrong!')
+      else if (body) res.json(JSON.parse(body))
+      else res.status(404).send('No results!')
     })
   } else {
-    console.log('favicon.ico x')
     res.status(200).send('Cannot find anything about: ' + urlRequested)
   }
 })
