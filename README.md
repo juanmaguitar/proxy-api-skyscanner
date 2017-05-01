@@ -25,5 +25,5 @@ Original API: "http://partners.api.skyscanner.net/apiservices/reference/v1.0/cou
 
 Proxy: https://powerful-oasis-62593.herokuapp.com/countries/{locale}
 
-Example: https://powerful-oasis-62593.herokuapp.com/countries/es_ES
+Example: https://powerful-oasis-62593.herokuapp.com/countries/es-ES
 ```
